@@ -1,7 +1,8 @@
-import { Form, useLoaderData, redirect } from "react-router-dom";
+import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
 import { updateContact } from "../contacts";
 export default function EditContact() {
   const { contact } = useLoaderData();
+  const navigator = useNavigate();
   return (
     <Form method="post" id="contact-form">
       <p>
@@ -9,7 +10,7 @@ export default function EditContact() {
         <input type="text" name="first" defaultValue={contact?.first} />
         <input type="text" name="last" defaultValue={contact?.last} />
       </p>
-      <label>
+      <label> 
         <span>Twitter</span>
         <input name="twitter" defaultValue={contact?.twitter} />
       </label>
@@ -27,7 +28,14 @@ export default function EditContact() {
       </label>
       <p>
         <button type="submit">save</button>
-        <button type="buttonL ">Cancel</button>
+        <button
+          type="button"
+          onClick={() => {
+            navigator(-1);
+          }}
+        >
+          Cancel
+        </button>
       </p>
     </Form>
   );
